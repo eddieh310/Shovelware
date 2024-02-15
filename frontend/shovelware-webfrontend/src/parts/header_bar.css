@@ -8,6 +8,7 @@
     height: 10%;
     text-align: left;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    font-size: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
