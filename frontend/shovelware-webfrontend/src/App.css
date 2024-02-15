@@ -1,5 +1,88 @@
-.App {
+/* .App {
   text-align: center;
+}
+
+h#ShovelWare{
+  color:white;
+  font-family: "Serif";
+  font-size: 40px;
+  padding-top: 20px;
+  padding-right: 1050px;
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #05bef7;
+}
+
+button#return_home{
+  color:white;
+  font-family: "Serif";
+  font-size: 20px;
+  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  nav-down: 15px;
+  right: 1px;
+  height: 40px;
+  width: 150px;
+  text-shadow: 0 0 3px #38dab9, 0 0 5px #05bef7;
+}
+.page_container{
+  max-height: 100%;
+  max-width: 100%;
+  position:absolute;
+}
+
+.header_container {
+  position:relative;
+  border-color: black;
+  border-style: groove;
+  min-width: 100%;
+  height:50px;
+  background-color:#61dafb
+}
+
+.Header {
+  border: black;
+  border-style: solid;
+  background-color: #89cff0;
+  color: white;
+} */
+
+.content-container {
+  color:white;
+  font-family: "Serif";
+  font-size: 30px;
+  text-align:center;
+  text-shadow: 0 0 3px #000000, 0 0 1px #000000;
+}
+
+.content-container .input-container {
+  margin-bottom: 20px;
+  border-radius: 40px;
+  border-style: solid;
+  border: black;
+}
+
+.content-container .Signup_Button {
+  border-radius: 5px;
+  height: 50px;
+  width: 224px;
+  border-radius: 10x;
+  border-style: solid;
+  border: rgb(0, 0, 0);
+  font-size: 25px;
+  font-family: Arial;
+  margin: 0;
+  text-shadow: 0 0 3px #000000, 0 0 1px #000000;
+  font-family: Arial;
+  background-color: #2dc4e6; /* Change background color */
+  color: #fff;
+  cursor:pointer;
+  font-weight: bold;
+}
+
+.content-container .input-container input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
 }
 
 .App-logo {
