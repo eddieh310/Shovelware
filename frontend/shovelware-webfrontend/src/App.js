@@ -1,66 +1,31 @@
 // App.js
 
-import React, {useState} from 'react';
-import Header from './parts/header_bar.js';
-import './App.css'; // Import global styles if needed
+import React, { useEffect } from 'react';
+import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
+import SuccessPage from './Pages/SuccessPage.js';
+import Home_Page from './Pages/Home_Page.js';
 
-import {
-  handleEmailChange,
-  handleUsernameChange,
-  handlePasswordChange,
-  handleSubmit,
-} from './sign_up_management.js'; // Adjust the path based on your project structure
-
-const App = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+// Routing/Directories Handler
+function App() {
   return (
-    <div>
-      <Header offset={50} />
-      <div className="content-container">
-        <h2 id = "SignUpTitle">Create Your ShovelWare Account</h2>
-        <head>
-          <meta charset="UTF-8"></meta>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-          <title>Inputable Textbox</title>          
-        </head>
-        <body>
+    <Routes>
+      {/* Default route, render the component for '/' */}
+      <Route
+        path="/"
+        element={
+          <>
+            <Navigate to="/home_page" />
+            {/* Other components can go here if needed */}
+          </>
+        }
+      />
 
-        <div className="input-container">
-        <input
-          type="text"
-          id="Email_Input"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => handleEmailChange(e, setEmail)}
-        />
-      </div>
-
-      <div className="input-container">
-        <input
-          type="text"
-          id="Username_Input"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => handleUsernameChange(e, setUsername)}
-        />
-      </div>
-
-      <div className="input-container">
-        <input
-          type="text"
-          id="Password_Input"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => handlePasswordChange(e, setPassword)}
-        />
-      </div>
-        <button onClick={() => handleSubmit(email, username, password)} className="Signup_Button">Sign Up</button>
-        </body>
-        </div>
-      </div>
+      {/* Other routes */}
+      <Route exact path="/" component={<Home_Page />} />
+      <Route path="/home_page" element={<Home_Page />} />
+      <Route path="/success_sign_up" element={<SuccessPage />} />
+    </Routes>
   );
-};
+}
 
 export default App;
