@@ -10,7 +10,7 @@
     $dbname = "cse442_2024_spring_team_ae_db";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
     // Check connection
     if ($conn->connect_error) {
@@ -43,6 +43,6 @@
     $stmt->bind_param("sss", $user, $pass, $email);
     $stmt->execute();
 
-    $conn->close();
+    mysqli_close($conn);
 
 ?>
