@@ -5,8 +5,8 @@
     header('Access-Control-Allow-Header: Content-Type');
 
     $servername = "oceanus.cse.buffalo.edu";
-    $username = "username";
-    $password = "password";
+    $username = "laveshpa";
+    $password = "50488238";
     $dbname = "cse442_2024_spring_team_ae_db";
 
     // Create connection
