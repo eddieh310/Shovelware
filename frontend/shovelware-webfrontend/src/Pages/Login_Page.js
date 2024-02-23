@@ -5,24 +5,22 @@ import { HashRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import '../App.js';
 import SuccessPage from './SuccessPage.js'
 import { useNavigate } from 'react-router-dom';
-import './Home_Page.css';
+import './Login_Page.css';
 
 import {
-    handleEmailChange,
     handleUsernameChange,
     handlePasswordChange,
     handleSubmit,
   } from '../sign_up_management.js'; 
 
-  const Home_Page = () => {
+  const Login_Page = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSignUp = () => {
+    const handleLogin= () => {
         // Handle form submission logic
-        handleSubmit(email, username, password);
+        handleSubmit(username, password);
         // Navigate to '/success_sign_up' after handling form submission
         console.log("redirecting to success page");
         navigate('/success_sign_up');
@@ -34,24 +32,13 @@ import {
         <Header offset={50} />
         <div className="content-container">
             {/* Sign up title header  */}
-            <h2 id = "SignUpTitle">Create Your ShovelWare Account</h2>
+            <h2 id = "SignUpTitle">Log Into Your ShovelWare Account</h2>
             <head>
             <meta charset="UTF-8"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             <title>Inputable Textbox</title>          
             </head>
             <body>
-
-            {/* Email Container  */}
-            <div className="input-container">
-            <input
-            type="text"
-            id="Email_Input"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => handleEmailChange(e, setEmail)}
-            />
-        </div>
 
         {/* Username Container  */}
         <div className="input-container">
@@ -75,19 +62,13 @@ import {
             onChange={(e) => handlePasswordChange(e, setPassword)}
             />
         </div>
-        <h3>Already have an account?
-            <br></br>
-            <Link to="/login" className="login_button">Log In</Link>
-        </h3>
-            <button onClick={handleSignUp} className="Signup_Button">Sign Up</button>
+            <button onClick={handleLogin} className="Signup_Button">Log In</button>
             </body>
             </div>
 
-            {/* Password Container  */}
-            {/*Changes Were Made*/}
         </div>
 
     )
 }
 
-export default Home_Page
+export default Login_Page

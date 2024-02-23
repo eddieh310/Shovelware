@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
 import SuccessPage from './Pages/SuccessPage.js';
 import Home_Page from './Pages/Home_Page.js';
+import Login_Page from './Pages/Login_Page.js';
 
 // Routing/Directories Handler
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/" component={<Home_Page />} />
       <Route path="/home_page" element={<Home_Page />} />
       <Route path="/success_sign_up" element={<SuccessPage />} />
+      <Route path="/login" element={<Login_Page />} />
     </Routes>
   );
 }
