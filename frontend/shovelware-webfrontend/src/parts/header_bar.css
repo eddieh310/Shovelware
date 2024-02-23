@@ -8,6 +8,7 @@
     height: 10%;
     text-align: left;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+
     font-size: 25px;
     display: flex;
     justify-content: space-between;
@@ -15,12 +16,17 @@
     padding: 20px;
     background-color: #2dc4e6;
     color: #fff;
+    border-bottom: 3px solid black;
+    box-shadow: 0 5px 2px -2px gray;
+    
+
   }
 
   .header h1 {
     margin: 0;
     text-shadow: 0 0 3px #1fa9ff, 0 0 1px #000000;
-    font-family: Arial;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 75px;
   }
 
 
