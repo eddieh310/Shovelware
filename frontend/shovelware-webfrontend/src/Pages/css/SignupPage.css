@@ -1,0 +1,97 @@
+/* General styles for the top container */
+  .topcontainer {
+    background-color: #ace3f0;
+
+    
+  }
+  
+  /* Styles for the content container */
+  .content-container {
+    color: #333; /* Text color */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+  }
+  
+  /* Styles for the sign-up title header */
+  #SignUpTitle {
+    color: #ffffff; 
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: bold;
+    -webkit-text-stroke: 1px black;
+
+  }
+  
+  /* Styles for the input container */
+  .input-container {
+    margin-bottom: 20px;
+
+  }
+
+  .input-container:hover {
+    background-color: #a0e3f2;
+    color: blue;
+  }
+  
+  /* Styles for the input fields */
+  .input-container input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px;
+  }
+
+  /* Styles for the input fields */
+  .input-container input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px;
+  }
+  
+  /* Styles for the sign-up button */
+  .Signup_Button {
+    height: 50px;
+    width: 224px;
+    border-radius: 10px; /* Fix typo: "10x" to "10px" */
+    border-style: solid;
+    border-width: 1px; /* Specify border width */
+    border-color: black;
+    font-size: 25px;
+    font-family: Arial;
+    margin: 0;
+    font-family: Arial;
+    background-color: #2dc4e6;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .Signup_Button:hover {
+    background-color: #1361df; /* Darker shade on hover */
+    
+    
+  }
+
+  .login_button { 
+    color: #1361df;
+  }
+
+  .login_button:hover { 
+    color: #8478bf;
+  }
+
+  p {
+    background-image: url("/src/images/image.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+
