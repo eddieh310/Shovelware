@@ -1,9 +1,8 @@
-.SuccessfulLogin{
+.SuccessfulLogin {
     color: #333; /* Text color */
     font-family: "Arial" , sans-serif;
     font-weight: bold;
     text-align: center;
-    background-image: url("/src/images/good_signup.jpeg");
 }
 
 #SuccessHeader {
