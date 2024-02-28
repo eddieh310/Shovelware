@@ -3,7 +3,7 @@ import React from 'react';
 import '../css/SuccessSignupPage.css';
 import Header from '../../parts/header_bar';
 
-const SuccessPage = () => {
+const SignupSuccessPage = () => {
   return (
     <div className = "SuccessfulSignUp">
       <Header offset={15}/>
@@ -13,4 +13,4 @@ const SuccessPage = () => {
   );
 };
 
-export default SuccessPage;
+export default SignupSuccessPage;

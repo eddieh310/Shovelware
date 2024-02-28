@@ -11,6 +11,28 @@ export const handleEmailChange = (e, setEmail) => {
   export const handlePasswordChange = (e, setPassword) => {
     setPassword(e.target.value);
   };
+
+
+
+
+  //Make something happen when the user presses submit for Log In
+  export const handleLogin = (username, password) => {
+    let data_to_send = {'username': username, 'password': password};
+    const JSON_String = JSON.stringify(data_to_send);
+
+    fetch('https://www-student.cse.buffalo.edu/CSE442-542/2024-Spring/cse-442ae/backend/server/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
+      body: JSON_String
+    });
+
+  }
+
+
+
+
   
   //Make something happen when the user presses submit sign up.
   export const handleSubmit = (email, username, password) => {
