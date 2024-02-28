@@ -2,8 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; 
-import SuccessPage from './Pages/SuccessPage.js';
-import Home_Page from './Pages/Home_Page.js';
+import SignupSuccessPage from './Pages/js/SuccessSignupPage.js';
+import SignupPage from './Pages/js/SignupPage.js';
+import LoginPage from './Pages/js/LoginPage.js';
+import LoginSuccessPage from './Pages/js/SuccessLoginPage.js';
 
 // Routing/Directories Handler
 function App() {
@@ -21,9 +23,11 @@ function App() {
       />
 
       {/* Other routes */}
-      <Route exact path="/" component={<Home_Page />} />
-      <Route path="/home_page" element={<Home_Page />} />
-      <Route path="/success_sign_up" element={<SuccessPage />} />
+      <Route exact path="/" component={<SignupPage />} />
+      <Route path="/home_page" element={<SignupPage  />} />
+      <Route path="/success_sign_up" element={<SignupSuccessPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/success_login" element={<LoginSuccessPage /> } />
     </Routes>
   );
 }
