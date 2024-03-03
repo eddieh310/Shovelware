@@ -4,10 +4,10 @@
     header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Header: Content-Type');
 
-    $servername = "oceanus.cse.buffalo.edu";
-    $username = "dylanfit";
-    $password = "50464839";
-    $dbname = "cse442_2024_spring_team_ae_db";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "testdb";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -18,30 +18,36 @@
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $user = $data['username'];
+    $user = $data['email'];
     $pass = $data['password'];
 
     $reply = "Successful!";
+    
 
     if ($user != '' && $pass != '') {
-
-        $hashed = password_hash($pass, PASSWORD_BCRYPT);
         
-        $query = "SELECT * FROM Registered_Users WHERE username = ?";
+        $query = "SELECT id, passkey FROM Registered_Users WHERE email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $user);
         $stmt->execute();
 
         $result = $stmt->get_result();
 
-        if (mysqli_num_rows($result) == 0) {
-            $reply = "Username not found!";
-
-        $row = $result->fetch_assoc();
-
-        if ($row["passkey"] != $pass){
-            $reply = "Incorrect Password!";
+        if (mysqli_num_rows($result) > 0) {
+            $row = $result->fetch_assoc();
+    
+            if (password_verify($pass, $row["passkey"])) {
+                $cookieValue = $row["id"]; // Use a secure identifier, like user_id
+                setcookie("user_cookie", $cookieValue, time() + 3600 * 24 * 30, "/"); // Cookie lasts for 30 days
+                $reply = "Successful!";
+            } else {
+                $reply = "Incorrect Password!";
+            }
+        } else {
+            $reply = "Email not found!";
         }
+    
+        $stmt->close();
     }
     else{
 
@@ -49,8 +55,6 @@
 
 
     }
-}
-    $stmt->close();
     mysqli_close($conn);
 
     $response[] = array("result" => $reply);
