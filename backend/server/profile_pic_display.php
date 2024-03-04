@@ -21,7 +21,7 @@ if (isset($_COOKIE["user_email"])){
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT filename FROM profile_pictures WHERE email = ?";
+    $sql = "SELECT file_name FROM profile_pictures WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $userEmail);
 
@@ -32,16 +32,17 @@ if (isset($_COOKIE["user_email"])){
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $filename = $row["filename"];
+        $filename = $row["file_name"];
 
         // Send filename to frontend if it exists
-        echo json_encode(array("filename" => $filename));
+        echo json_encode(array("file_name" => $filename));
     } else {
         echo "No profile picture found for this user.";
     }
     $conn->close();
     $stmt->close();
-} else {
+} 
+else {
     // User email cookie not set
     echo "User email cookie not set.";
 }
