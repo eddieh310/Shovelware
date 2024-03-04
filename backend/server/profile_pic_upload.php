@@ -27,7 +27,7 @@
     $file_name = $data["file_name"];
     $email = $data["email"];
 
-    $query = "INSERT INTO profile_pic (file_name, email) VALUES (?, ?)";
+    $query = "INSERT INTO profile_pictures (file_name, email) VALUES (?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $file_name, $email);
     $stmt->execute();
