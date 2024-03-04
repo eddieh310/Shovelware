@@ -1,4 +1,6 @@
 <?php
+    // Include the database configuration file  
+    require_once 'dbConfig.php'; 
 
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST');
@@ -18,28 +20,55 @@
     $sql = "CREATE TABLE IF NOT EXISTS profile_pictures (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         file_name VARCHAR(255) NOT NULL,
+        img_data LONGBLOB NOT NULL,
         email VARCHAR(255) NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        )";
+    )";
 
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    $file_name = $data["file_name"];
-    $email = $data["email"];
-
-    $query = "INSERT INTO profile_pictures (file_name, email) VALUES (?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $file_name, $email);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo "Data inserted successfully.";
+    // Execute the create table query
+    if ($conn->query($sql) === TRUE) {
+        echo "Table profile_pictures created successfully";
     } else {
-        echo "Error inserting data: " . $conn->error;
+        echo "Error creating table: " . $conn->error;
     }
 
-    $stmt->close();
+    $status = $statusMsg = ''; 
+    if(isset($_POST["submit"])){ 
+        $status = 'error'; 
+        if(!empty($_FILES["image"]["name"])) { 
+            // Get file info 
+            $fileName = basename($_FILES["image"]["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+            
+            // Allow certain file formats 
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            if(in_array($fileType, $allowTypes)){ 
+                $image = $_FILES['image']['tmp_name']; 
+                $imgContent = addslashes(file_get_contents($image)); 
+                
+                // Get email
+                $email = $_POST['email'];
 
-    mysqli_close($conn);
+                // Insert image content into database 
+                $query = "INSERT INTO profile_pictures (file_name, img_data, email) VALUES (?, ?, ?)";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("sss", $fileName, $imgContent, $email);
+                $stmt->execute();
+                
+                if($stmt->affected_rows > 0){ 
+                    $status = 'success'; 
+                    $statusMsg = "File uploaded successfully."; 
+                }else{ 
+                    $statusMsg = "File upload failed, please try again."; 
+                }  
+            }else{ 
+                $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+            } 
+        }else{ 
+            $statusMsg = 'Please select an image file to upload.'; 
+        } 
+    } 
 
+    // Display status message 
+    echo $statusMsg; 
 ?>

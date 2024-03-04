@@ -1,13 +1,10 @@
 <?php
-
-
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Header: Content-Type');
 
-if (isset($_COOKIE["user_email"])){
+if (isset($_COOKIE["user_email"])) {
     $userEmail = $_COOKIE["user_email"];
-
     $userEmail = filter_var($userEmail, FILTER_SANITIZE_EMAIL);
 
     $servername = "oceanus.cse.buffalo.edu";
@@ -21,7 +18,7 @@ if (isset($_COOKIE["user_email"])){
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT file_name FROM profile_pictures WHERE email = ?";
+    $sql = "SELECT file_name, img_data FROM profile_pictures WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $userEmail);
 
@@ -33,18 +30,18 @@ if (isset($_COOKIE["user_email"])){
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $filename = $row["file_name"];
+        $imageData = $row["img_data"];
 
-        // Send filename to frontend if it exists
-        echo json_encode(array("file_name" => $filename));
+        // Send filename and image data to frontend if it exists
+        echo json_encode(array("file_name" => $filename, "img_data" => base64_encode($imageData)));
     } else {
         echo "No profile picture found for this user.";
     }
+
     $conn->close();
     $stmt->close();
-} 
-else {
+} else {
     // User email cookie not set
     echo "User email cookie not set.";
 }
-
-
+?>
