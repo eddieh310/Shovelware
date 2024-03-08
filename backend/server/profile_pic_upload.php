@@ -21,7 +21,7 @@
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         file_name VARCHAR(255) NOT NULL,
         img_data LONGBLOB NOT NULL,
-        email VARCHAR(255) NOT NULL,
+        auth_token VARCHAR(255) NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )";
 
@@ -47,12 +47,12 @@
                 $imgContent = addslashes(file_get_contents($image)); 
                 
                 // Get email
-                $email = $_POST['email'];
+                $auth_token = $_POST['auth_token'];
 
                 // Insert image content into database 
-                $query = "INSERT INTO profile_pictures (file_name, img_data, email) VALUES (?, ?, ?)";
+                $query = "INSERT INTO profile_pictures (file_name, img_data, auth_token) VALUES (?, ?, ?)";
                 $stmt = $conn->prepare($query);
-                $stmt->bind_param("sss", $fileName, $imgContent, $email);
+                $stmt->bind_param("sss", $fileName, $imgContent, $auth_token);
                 $stmt->execute();
                 
                 if($stmt->affected_rows > 0){ 
@@ -69,6 +69,6 @@
         } 
     } 
 
-    // Display status message 
+    // send status message to frontend
     echo $statusMsg; 
 ?>

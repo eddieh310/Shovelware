@@ -3,9 +3,9 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Header: Content-Type');
 
-if (isset($_COOKIE["user_email"])) {
-    $userEmail = $_COOKIE["user_email"];
-    $userEmail = filter_var($userEmail, FILTER_SANITIZE_EMAIL);
+if (isset($_COOKIE["auth_token"])) {
+    $auth_token = $_COOKIE["auth_token"];
+    //$userEmail = filter_var($userEmail, FILTER_SANITIZE_EMAIL);
 
     $servername = "oceanus.cse.buffalo.edu";
     $username = "ejherrer";
@@ -18,9 +18,9 @@ if (isset($_COOKIE["user_email"])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT file_name, img_data FROM profile_pictures WHERE email = ?";
+    $sql = "SELECT file_name, img_data FROM profile_pictures WHERE auth_token = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $userEmail);
+    $stmt->bind_param("s", $auth_token);
 
     $stmt->execute();
 
@@ -42,6 +42,6 @@ if (isset($_COOKIE["user_email"])) {
     $stmt->close();
 } else {
     // User email cookie not set
-    echo "User email cookie not set.";
+    echo "User auth_token cookie is not set.";
 }
 ?>
