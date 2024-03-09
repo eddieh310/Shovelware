@@ -1,6 +1,6 @@
 <?php
     // Include the database configuration file  
-    require_once 'dbConfig.php'; 
+    //require_once 'dbConfig.php'; 
 
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: POST');
@@ -33,6 +33,7 @@
     }
 
     $status = $statusMsg = ''; 
+    var_dump($_POST);
     if(isset($_POST["submit"])){ 
         $status = 'error'; 
         if(!empty($_FILES["image"]["name"])) { 
@@ -46,8 +47,7 @@
                 $image = $_FILES['image']['tmp_name']; 
                 $imgContent = addslashes(file_get_contents($image)); 
                 
-                // Get email
-                $auth_token = $_POST['auth_token'];
+                $auth_token = $_COOKIE['auth_token'];
 
                 // Insert image content into database 
                 $query = "INSERT INTO profile_pictures (file_name, img_data, auth_token) VALUES (?, ?, ?)";
