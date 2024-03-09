@@ -26,14 +26,14 @@
     )";
 
     // Execute the create table query
-    if ($conn->query($sql) === TRUE) {
-        echo "Table profile_pictures created successfully";
-    } else {
-        echo "Error creating table: " . $conn->error;
-    }
+    //if ($conn->query($sql) === TRUE) {
+      //  echo "Table profile_pictures created successfully";
+    //} else {
+      //  echo "Error creating table: " . $conn->error;
+    //}
 
     $status = $statusMsg = ''; 
-    var_dump($_POST);
+    //var_dump($_POST);
     if(isset($_POST["submit"])){ 
         $status = 'error'; 
         if(!empty($_FILES["image"]["name"])) { 
