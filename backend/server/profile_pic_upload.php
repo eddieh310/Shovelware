@@ -31,6 +31,7 @@ $sql = "CREATE TABLE IF NOT EXISTS profile_pictures (
 //} else {
 //  echo "Error creating table: " . $conn->error;
 //}
+$conn->query($sql);
 
 $statusMsg = ''; 
 //var_dump($_POST);
